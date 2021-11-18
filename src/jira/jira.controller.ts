@@ -1,6 +1,9 @@
 import { Controller, Get } from '@nestjs/common';
 import { JiraService } from './jira.service';
 
+import Repo = require('git-tools');
+import { Octokit, App } from 'octokit';
+
 @Controller('jira')
 export class JiraController {
   constructor(private readonly jira: JiraService) {}
@@ -79,5 +82,49 @@ export class JiraController {
       });
     console.log('completed');
     return 'hello world';
+  }
+
+  @Get('/test1')
+  async test1() {
+    const repo = new Repo('./');
+    // repo.currentBranch((branch) => {
+    //   console.log(branch);
+    // });
+    repo.authors('main', function (error, authors) {
+      console.log(error, authors);
+    });
+    repo.tags(function (err, data) {
+      console.log(err, data);
+    });
+
+    return '123';
+  }
+
+  @Get('/test')
+  async test() {
+    const TOKEN = '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';
+    const oct = new Octokit({ auth: TOKEN });
+    const {
+      data: { login: login },
+    } = await oct.rest.users.getAuthenticated();
+    console.log('hello,', login);
+
+    const { data: tags } = await oct.rest.repos.listTags({
+      owner: 'm7nevil',
+      repo: 'test-jira',
+    });
+    console.log(tags);
+
+    // const it = await oct.paginate.iterator(oct.rest.repos.listTags, {
+    //   owner: 'm7nevil',
+    //   repo: 'test-jira',
+    //   per_page: 100,
+    // });
+    //
+    // for await (const { data: tags } of it) {
+    //   for (const tag of tags) {
+    //     console.log(tag);
+    //   }
+    // }
   }
 }

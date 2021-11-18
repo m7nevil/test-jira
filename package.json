@@ -26,9 +26,11 @@
     "@nestjs/core": "^8.0.0",
     "@nestjs/platform-express": "^8.0.0",
     "@nestjs/schedule": "^1.0.2",
+    "git-tools": "^0.3.0",
     "github-api": "^3.4.0",
     "jira.js": "^2.7.0",
     "js-yaml": "^4.1.0",
+    "octokit": "^1.7.0",
     "reflect-metadata": "^0.1.13",
     "rimraf": "^3.0.2",
     "rxjs": "^7.2.0"

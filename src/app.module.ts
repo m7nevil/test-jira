@@ -4,7 +4,7 @@ import { AppService } from './app.service';
 import { GitService } from './git/git.service';
 import { JiraModule } from './jira/jira.module';
 import { ScheduleModule } from '@nestjs/schedule';
-import { TaskService } from './task/task.service';
+// import { TaskService } from './task/task.service';
 import { ConfigModule } from '@nestjs/config';
 
 @Module({
@@ -18,6 +18,6 @@ import { ConfigModule } from '@nestjs/config';
     }),
   ],
   controllers: [AppController],
-  providers: [AppService, GitService, TaskService],
+  providers: [AppService, GitService],
 })
 export class AppModule {}
