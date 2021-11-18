@@ -109,11 +109,18 @@ export class JiraController {
     } = await oct.rest.users.getAuthenticated();
     console.log('hello,', login);
 
-    const { data: tags } = await oct.rest.repos.listTags({
+    // const { data: tags } = await oct.rest.repos.listTags({
+    //   owner: 'm7nevil',
+    //   repo: 'test-jira',
+    // });
+    // console.log(tags);
+
+    const { data: commits } = await oct.rest.repos.listCommits({
       owner: 'm7nevil',
       repo: 'test-jira',
+      per_page: 30,
     });
-    console.log(tags);
+    console.log(commits);
 
     // const it = await oct.paginate.iterator(oct.rest.repos.listTags, {
     //   owner: 'm7nevil',
