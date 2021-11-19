@@ -100,8 +100,6 @@ export class JiraController {
     return '123';
   }
 
-
-
   @Get('/test')
   async test() {
     const TOKEN = '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';
